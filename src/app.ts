@@ -1,6 +1,5 @@
 import express from "express";
 import { connectToDatabase } from "./utils/database";
-import logger from "./utils/logger";
 import shutdownGracefully from "./utils/shutdownGracefully";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -34,7 +33,7 @@ app.use("/api/videos", videoRoute);
 
 const server = app.listen(process.env.PORT, async () => {
   await connectToDatabase();
-  logger.info(`Server started on port ${process.env.PORT}`);
+  console.log(`Server started on port ${process.env.PORT}`);
 });
 
 // server shutdown
