@@ -8,7 +8,7 @@ import userRoute from "./modules/user/user.route";
 import authRoute from "./modules/auth/auth.route";
 import deserializeUser from "./middleware/deserializeUser";
 import videoRoute from "./modules/videos/video.route";
-import dotenv from "dotenv";
+import dotenv, { config } from "dotenv";
 
 const app = express();
 
@@ -26,10 +26,12 @@ app.use(express.json());
 app.use(helmet());
 app.use(deserializeUser);
 
-app.get("/", (req, res) => res.send("Hello World!"));
+app.get("/", (req, res) => res.send(`Hello World! ${process.env.NODE_ENV}`));
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/videos", videoRoute);
+console.log("process.env.NODE_ENV", process.env.NODE_ENV);
+
 
 const server = app.listen(process.env.PORT, async () => {
   await connectToDatabase();
