@@ -29,7 +29,7 @@ const loginHandler = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         res.cookie("accessToken", jwt, {
             maxAge: 3.154e10,
             httpOnly: true,
-            domain: "localhost",
+            domain: process.env.NODE_ENV === "production" ? "mern-stack-youtube-clone-next.herokuapp.com" : "localhost",
             path: "/",
             sameSite: "strict",
             secure: process.env.NODE_ENV === "production" ? true : false,

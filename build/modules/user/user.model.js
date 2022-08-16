@@ -24,7 +24,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserModel = exports.User = void 0;
 const typegoose_1 = require("@typegoose/typegoose");
 const argon2_1 = __importDefault(require("argon2"));
-const logger_1 = __importDefault(require("../../utils/logger"));
 let User = class User {
     comparePassword(password) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -55,7 +54,7 @@ User = __decorate([
                 return next();
             }
             catch (err) {
-                logger_1.default.error(err);
+                console.error(err);
             }
         });
     })

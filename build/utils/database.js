@@ -14,24 +14,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.disconnectFromDatabase = exports.connectToDatabase = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
-const logger_1 = __importDefault(require("./logger"));
 const connectToDatabase = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { connection } = yield mongoose_1.default.connect(process.env.MONGODB_URI);
-        logger_1.default.info(`Connected to ${connection.host}`);
+        console.log(`Connected to ${connection.host}`);
     }
     catch (err) {
-        logger_1.default.error(err);
+        console.log(err);
     }
 });
 exports.connectToDatabase = connectToDatabase;
 const disconnectFromDatabase = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield mongoose_1.default.disconnect();
-        logger_1.default.info("Disconnected from database");
+        console.log("Disconnected from database");
     }
     catch (err) {
-        logger_1.default.error(err);
+        console.log(err);
     }
 });
 exports.disconnectFromDatabase = disconnectFromDatabase;

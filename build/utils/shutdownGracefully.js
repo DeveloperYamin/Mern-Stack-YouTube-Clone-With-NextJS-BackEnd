@@ -8,18 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = require("./database");
-const logger_1 = __importDefault(require("./logger"));
 const shutdownGracefully = (server, signals) => {
     signals.forEach((signal) => {
         process.on(signal, () => __awaiter(void 0, void 0, void 0, function* () {
-            logger_1.default.info(`Received ${signal}, shutting down gracefully`);
+            console.log(`Received ${signal}, shutting down gracefully`);
             server.close(() => __awaiter(void 0, void 0, void 0, function* () {
-                logger_1.default.info("Server gracefully stopped");
+                console.log("Server gracefully stopped");
                 //disconnect from database
                 yield (0, database_1.disconnectFromDatabase)();
                 process.exit(0);
