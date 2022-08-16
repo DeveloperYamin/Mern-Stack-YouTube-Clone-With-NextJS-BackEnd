@@ -1,6 +1,5 @@
 import { getModelForClass, pre, prop } from "@typegoose/typegoose";
 import argon2 from "argon2";
-import logger from "../../utils/logger";
 
 @pre<User>("save", async function (next) {
   try {
@@ -9,7 +8,7 @@ import logger from "../../utils/logger";
     this.password = hashPassword;
     return next();
   } catch (err: any) {
-    logger.error(err);
+    console.error(err);
   }
 })
 export class User {
