@@ -1,15 +1,11 @@
 import pino from "pino";
-
-const logger = pino({
-  transport: {
-    target: "pino-pretty",
-    options: {
-      colorize: true,
-      translateTime: true, // --translateTime
-      ignore: "pid,hostname", // --ignore
-    },
-  },
-  
+import pretty from "pino-pretty";
+const stream = pretty({
+  colorize: true,
+  translateTime: true, // --translateTime
+  ignore: "pid,hostname", // --ignore
 });
+
+const logger = pino(stream);
 
 export default logger;
