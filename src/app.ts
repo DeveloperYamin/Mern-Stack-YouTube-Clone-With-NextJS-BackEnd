@@ -18,7 +18,7 @@ dotenv.config();
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: process.env.CORS_ORIGIN || "http://localhost:3000",
     credentials: true,
   })
 );
@@ -31,8 +31,6 @@ app.get("/", (req, res) => res.send("Hello World!"));
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/videos", videoRoute);
-
-
 
 const server = app.listen(process.env.PORT, async () => {
   await connectToDatabase();
