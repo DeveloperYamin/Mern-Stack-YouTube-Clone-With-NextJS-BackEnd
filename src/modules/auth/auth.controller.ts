@@ -28,7 +28,7 @@ export const loginHandler = async (
     res.cookie("accessToken", jwt, {
       maxAge: 3.154e10, // 1 year
       httpOnly: true,
-      domain: "localhost",
+      domain: process.env.NODE_ENV === "production" ? "mern-stack-youtube-clone-next.herokuapp.com" : "localhost",
       path: "/",
       sameSite: "strict",
       secure: process.env.NODE_ENV === "production" ? true : false,

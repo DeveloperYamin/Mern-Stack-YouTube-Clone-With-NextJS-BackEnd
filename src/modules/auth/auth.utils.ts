@@ -1,8 +1,5 @@
 import jwt from "jsonwebtoken";
 
-const JWT_SECRET = process.env.JWT_SECRET as string;
-const EXPIRES_IN = process.env.JWT_EXPIRES_IN as string;
-
 export const signJwt = (payload: string | Buffer | Object) => {
   return jwt.sign(payload, process.env.JWT_SECRET as string, {
     expiresIn: process.env.JWT_EXPIRES_IN,
